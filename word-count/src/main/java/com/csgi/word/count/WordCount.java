@@ -28,7 +28,7 @@ public class WordCount
 		List<String> list = null;
 		
 		if(stringList.size() < 1 && character == null) 
-			log.error("Either character or strings list must not be empty/null.");
+			log.error("Either character or word list must not be empty/null.");
 		
 		list = new ArrayList<String>();
 		
@@ -45,9 +45,6 @@ public class WordCount
 		} 
 		map = new HashMap<Integer, List<String>>();
 		map.put(count, list);
-		
-		//Map will return count of Words starts with given character in Integer as Key 
-		//and list of words whose length is more than 5
 		return map;
 	}
 }
