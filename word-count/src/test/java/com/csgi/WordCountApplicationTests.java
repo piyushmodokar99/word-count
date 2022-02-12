@@ -12,8 +12,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.csgi.word.count.WordCount;
+import com.csgi.word.count.WordCountFunctional;
 
-@SpringBootTest
+@SpringBootTest(classes = {WordCount.class, WordCountFunctional.class})
 class WordCountApplicationTests {
 
 	//@Test
@@ -21,6 +22,7 @@ class WordCountApplicationTests {
 	}
 	
 	static WordCount wordCount = null;
+	static WordCountFunctional wordCountFunctional = null;
 	static List<String> list = null;
 	final int WORD_LONGER_THAN = 5;
 	
@@ -28,7 +30,8 @@ class WordCountApplicationTests {
 	public static void createObj()
 	{
 		wordCount = new WordCount();
-		list = Arrays.asList("Pune","Akola","Mumbai","Delhi","Morshi","Piyush","Faizan","Michael","mumbai","man", "", "melbourne", null);
+		wordCountFunctional = new WordCountFunctional();
+		list = Arrays.asList("Pune","Akola","Mumbai","Delhi","Morshi","Piyush","Faizan","Michael","mumbai","man", "", "melbourne");
 	}
 	
 	@Test
@@ -49,5 +52,15 @@ class WordCountApplicationTests {
 		expected.put(3, Arrays.asList("mumbai", "melbourne"));
 		
 		assertEquals(expected, wordCount.countWords(list, character, WORD_LONGER_THAN));
+	}
+	
+	@Test
+	void testWordCountFunctionalStartsWithCharm()
+	{
+		String character = "m";
+		Map<Integer, List<String>> expected = new HashMap<Integer, List<String>>();
+		expected.put(3, Arrays.asList("mumbai", "melbourne"));
+		
+		assertEquals(expected, wordCountFunctional.countWords(list, character, WORD_LONGER_THAN));
 	}
 }
